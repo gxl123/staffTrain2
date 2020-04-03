@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xk.staff.repository.StaffMapper">
+
+    <resultMap id="myFindAllResultMap" type="com.xk.staff.entity.Staff">
+        <id property="id" column="id"></id>
+        <result property="sex" column="sex"></result>
+        <result property="name" column="name"></result>
+        <association property="department" javaType="com.xk.staff.entity.Department">
+            <id property="id" column="dpid"></id>
+            <result property="name" column="dpname"></result>
+        </association>
+    </resultMap>
+    <select id="myFindAll" resultMap="myFindAllResultMap">
+        select s.*,d.name as dpname from t_staff s,t_department d where s.dpid=d.id
+    </select>
+</mapper>

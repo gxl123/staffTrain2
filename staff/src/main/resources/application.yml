@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: staff
+  datasource:
+    url: jdbc:mysql://localhost:3306/retail_db?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
+    username: root
+    password: abcd.1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.xk.staff.entity
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #打印sql
+    lazy-loading-enabled: true #开启延时加载
+
+logging:
+  level:
+    com.xk.staff: debug   #打印sql
