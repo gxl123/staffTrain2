@@ -33,3 +33,9 @@ eureka:
 feign:
   hystrix:
     enabled: true
+#开启数据监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'hystrix.stream'

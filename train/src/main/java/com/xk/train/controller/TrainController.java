@@ -89,8 +89,8 @@ public class TrainController {
         List<Staff> staffs = new ArrayList<>();
 //        Staff[] staffArray = restTemplate.getForObject("http://192.168.0.75:8081/staff/findAll", Staff[].class);
 //        Staff[] staffArray = restTemplate.getForObject("http://192.168.0.75:8081/staff/myFindAll", Staff[].class);
-        Staff[] staffArray = restTemplate.getForObject("http://staff/staff/myFindAll", Staff[].class);
-
+//        Staff[] staffArray = restTemplate.getForObject("http://staff/staff/myFindAll", Staff[].class);
+        List<Staff> staffArray =  feignStaffClient.findAll();
         for(Staff staff : staffArray )
         {
             int staffID = staff.getId();
