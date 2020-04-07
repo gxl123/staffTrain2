@@ -1,0 +1,18 @@
+
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+spring:
+  cloud:
+    config:
+      name: configclient
+      label: master  #Git Repository的分支
+      discovery:
+        enabled: true
+        service-id: configserver  #配置中心在Eureka上注册的名称
