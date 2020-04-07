@@ -1,0 +1,47 @@
+server:
+  port: 8600
+
+spring:
+  application:
+    name: zuul
+#  security:
+#    user:
+#      password:
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    # 这里用服务所在的机器名注册到Eureka当中，但是如果prefer-ip-address为true，则会用IP地址注册
+    hostname: localhost
+    prefer-ip-address: true #显示ip
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+zuul:
+  routes:
+    staff:
+      path: /staff/**
+      serverId: staff
+      # url: http://localhost:8081/
+    train:
+      path: /train/**
+      serverId: train
+      # url: http://localhost:8082/
+#
+#
+#  # 前端页面初始化时即会调用Airports服务获得机场列表，通过Zuul代理请求时可能会导致请求超时，加大超时阈值可避免异常出现
+#  # 该参数设置仅适用于Zuul代理的方式，转发的方式不适用
+#  ribbon:
+#    ReadTimeout: 30000
+#    SocketTimeout: 15000
+#
+#  # 经由Zuul代理的请求均使用Hystrix command包装，缺省超时阈值为4000ms，这里设置为90000ms，以避免断路器打开
+#  # 实际上，该值会参考由ribbon.ReadTimeout等在内的多个参数值代入某公式后计算出的结果值
+#  hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 90000
+#
+#  management:
+#    endpoints:
+#      web:
+#        exposure:
+#          include: '*'

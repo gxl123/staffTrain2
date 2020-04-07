@@ -1,12 +1,35 @@
+
+
 spring:
   application:
-    name: staff
+    name: train
   datasource:
     url: jdbc:mysql://localhost:3306/retail_db?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
     username: root
     password: abcd.1234
     driver-class-name: com.mysql.cj.jdbc.Driver
+  zipkin:
+    base-url: http://localhost:9411/
+  sleuth:
+    sampler:
+      probability: 1.0
 
 logging:
   level:
-    com.xk.staff: debug   #打印sql
+    com.xk.train: debug   #打印sql
+server:
+  port: 8082
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka/
+
+#开启feign熔断机制
+feign:
+  hystrix:
+    enabled: true

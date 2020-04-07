@@ -1,19 +1,17 @@
-package com.xk.train;
+package com.xk.zipkinserver;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
+import zipkin2.server.internal.EnableZipkinServer;
 
 @SpringBootApplication
 @EnableEurekaClient
-@EnableFeignClients
-@MapperScan("com.xk.train.repository")
-public class TrainApplication {
+@EnableZipkinServer
+public class ZipkinserverApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TrainApplication.class, args);
+        SpringApplication.run(ZipkinserverApplication.class, args);
     }
 
 }
